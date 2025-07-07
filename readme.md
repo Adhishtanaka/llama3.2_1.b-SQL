@@ -7,39 +7,7 @@ This project is about fine-tuning a small LLaMA model (1B) to generate SQL queri
 * I'm starting with a pre-trained LLaMA 3.2 1B model.
 * I use a dataset called `synthetic_text_to_sql-ShareGPT` which has examples of prompts and the corresponding SQL queries.  
   Dataset URL: [https://huggingface.co/datasets/mlabonne/synthetic_text_to_sql-ShareGPT](https://huggingface.co/datasets/mlabonne/synthetic_text_to_sql-ShareGPT)
-* I fine-tune the model using a LoRA. This allows me to train only parts of the model, which makes it much faster and memory-efficient.
-
-## Tools I Used
-
-* [Unsloth](https://github.com/unslothai/unsloth) — This makes it easier and faster to load and fine-tune the LLaMA models.
-* The dataset is loaded from Hugging Face’s `datasets` library.
-
-## How It Works
-
-1. Load the dataset.
-2. Set up the model with LoRA (only updates key parts of the model).
-3. Use a trainer that goes through the dataset and teaches the model to map text to SQL.
-4. Save the fine-tuned model so it can be used later for inference.
-
-## Why I’m Doing This
-
-I want to build a model that can understand plain English and generate accurate SQL queries. This can be useful for tools where people want to ask questions about their data without writing SQL themselves.
-
-## Where to Find the Model
-You can find the fine-tuned model, including the .gguf file format for easy local use, on my Hugging Face repository:
-
-👉 https://huggingface.co/Adhishtanaka/llama_3.2_1b_SQL/tree/main
-
-## Where to Find the Notebooks
-
-You can find the Jupyter Notebook files used in this project directly in this repository:
-
-- `Evaluate_LLM.ipynb`: The evaluation pipeline for the fine-tuned model.
-- `Llama3.2_1B-SQL.ipynb`: The main notebook for fine-tuning and experimentation.
-
-👉 Browse these files in the [GitHub repository](https://github.com/Adhishtanaka/llama3.2_1.b-SQL) for full code and documentation.
-
----
+* I fine-tune the model using Unsloth libary with LoRA Adapters. This allows me to train only parts of the model, which makes it much faster and memory-efficient.
 
 ## Evaluation Process
 
@@ -58,6 +26,22 @@ The evaluation pipeline is implemented in [`Evaluate_LLM.ipynb`](./Evaluate_LLM.
 - The local LLaMA_3.2_1b fine tuned model is only used for generating answers.  
 - Normally, I use Gemini for evaluation, but due to Gemini being slow today, I used Groq for both question generation and evaluation in this run.
 
+## Why I’m Doing This
+
+I want to build a model that can understand plain English and generate accurate SQL queries. This can be useful for tools where people want to ask questions about their data without writing SQL themselves.
+
+## Where to Find the Model & Notebooks
+
+You can find the fine-tuned model, including the .gguf file format for easy local use, on my Hugging Face repository:
+
+👉 https://huggingface.co/Adhishtanaka/llama_3.2_1b_SQL/tree/main
+
+You can find the Jupyter Notebook files used in this project directly in this repository:
+
+- `Evaluate_LLM.ipynb`: The evaluation pipeline for the fine-tuned model.
+- `Llama3.2_1B-SQL.ipynb`: The main notebook for fine-tuning and experimentation.
+
+👉 Browse these files in the [GitHub repository](https://github.com/Adhishtanaka/llama3.2_1.b-SQL) for full code and documentation.
 
 
 
