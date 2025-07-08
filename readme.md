@@ -11,30 +11,40 @@ This project is about fine-tuning a small LLaMA model (1B) to generate SQL queri
 
 ## Evaluation Process
 
-The evaluation pipeline is implemented in [`Evaluate_LLM.ipynb`](./Evaluate_LLM.ipynb):
+The evaluation pipeline (see [`Evaluate_LLM.ipynb`](./Evaluate_LLM.ipynb)) works as follows:
 
-1. **SQL Question Generation** : Groq’s `llama3-8b-8192` model generates 10 SQL question blocks, each with table creation, inserts, and a natural language SQL question.
+1. **Question Generation**: 10 SQL questions are generated using Groq’s Gemma 2-9b-it model.
+2. **Model Answering**: Both the original and fine-tuned LLaMA models answer all 10 questions.
+3. **Scoring**: Each answer is evaluated and scored (1–10) by Groq’s Gemma 2-9b-it model.
+4. **Results**: The average scores and feedback for both models are summarized and saved.
 
-2. **Model Answering** : Each question is passed to a local fine-tuned LLaMA model (using `llama-cpp-python`) to generate SQL queries and explanations.
+  <center><img src="./screenshots/ss.png" width="300"/></center>
 
-3. **Automated Evaluation** : Groq’s `gemma2-9b-it` model acts as an expert tutor to score each (question, answer) pair on correctness and completeness (1–10 scale) and provide feedback.
+  <br>
 
-4. **Summary** : Average scores and detailed feedback for all questions are output.
-
-*Note:* 
-- The question generation and evaluation both use Groq's hosted models (Llama 3_8b for question generation, Gemma 2_9b for evaluation).  
-- The local LLaMA_3.2_1b fine tuned model is only used for generating answers.  
-- Normally, I use Gemini for evaluation, but due to Gemini being slow today, I used Groq for both question generation and evaluation in this run.
+> **Note:** I usually use Gemini for evaluation, but yesterday Gemini was slow for some reason, so I used Groq instead. Groq is faster, but the questions and evaluation quality are not as good as Gemini. Even so, the fine-tuned model still performed very well.
 
 ## Why I’m Doing This
 
 I want to build a model that can understand plain English and generate accurate SQL queries. This can be useful for tools where people want to ask questions about their data without writing SQL themselves.
+
+I’m also doing this for fun and for learning—it’s an investment in my future skills.
 
 ## Where to Find the Model & Notebooks
 
 You can find the fine-tuned model, including the .gguf file format for easy local use, on my Hugging Face repository:
 
 👉 https://huggingface.co/Adhishtanaka/llama_3.2_1b_SQL/tree/main
+
+You can also download and try the model directly using Ollama:
+
+👉 https://ollama.com/adhishtanaka/llama_3.2_1b-SQL
+
+To run it with Ollama, use:
+
+```sh
+ollama run adhishtanaka/llama_3.2_1b-SQL
+```
 
 You can find the Jupyter Notebook files used in this project directly in this repository:
 
