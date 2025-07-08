@@ -1,0 +1,11 @@
+metric,value
+Questions_Total,10.0
+Finetuned_Avg_Score,8.6
+Original_Avg_Score,5.5
+Average_Improvement,3.1
+Improvement_Percentage,56.36
+Questions_Better,9.0
+Questions_Worse,1.0
+Questions_Same,0.0
+Max_Finetuned,10.0
+Max_Original,10.0
