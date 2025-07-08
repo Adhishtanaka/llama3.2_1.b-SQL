@@ -18,7 +18,7 @@ The evaluation pipeline (see [`Evaluate_LLM.ipynb`](./Evaluate_LLM.ipynb)) works
 3. **Scoring**: Each answer is evaluated and scored (1–10) by Groq’s Gemma 2-9b-it model.
 4. **Results**: The average scores and feedback for both models are summarized and saved.
 
-  <center><img src="./screenshots/ss.png" width="300"/></center>
+  <center><img src="./screenshots/ss.png" width="600"/></center>
 
   <br>
 
